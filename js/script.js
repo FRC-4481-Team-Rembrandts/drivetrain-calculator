@@ -1,14 +1,12 @@
-let exp = "Math.sin(x)";
+const layout = {title: "Beautiful graph"};
 
-// Generate values
-const xValues = [];
-const yValues = [];
-for (let x = 0; x <= 10; x += 0.1) {
-  xValues.push(x);
-  yValues.push(eval(exp));
+
+function inputChange(){
+    let a = parseFloat(document.getElementById('number_input_a').value);
+    let b = parseFloat(document.getElementById('number_input_b').value);
+
+    let xValues,yValues = formula(a,b);
+    const data = [{x:xValues, y:yValues, mode:"lines"}];
+
+    Plotly.newPlot("plotWindow", data, layout);
 }
-
-// Display using Plotly
-const data = [{x:xValues, y:yValues, mode:"lines"}];
-const layout = {title: "y = " + exp};
-Plotly.newPlot("myPlot", data, layout);
