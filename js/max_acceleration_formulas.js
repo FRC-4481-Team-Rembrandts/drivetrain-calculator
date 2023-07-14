@@ -36,7 +36,6 @@ function formula_ax(mu, l, h, m, r_t, T_stall, gear_ratio){
     let a = l/2;
     let M_dmotor = T_stall * gear_ratio * 2;  //Max moment of two wheels combined limited by motor stall torque
     let a_x;
-    
     // Theoretical maximum acceleration, forces and moments
     a_x = mu * g;
 
