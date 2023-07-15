@@ -71,6 +71,7 @@ function plot_max_accel(){
     
     const data = [traceH, traceT];
     var new_layout = draw_vert_line(layoutA, h, T_stall);
+    console.log(new_layout);
 
     Plotly.newPlot("plot_window_accel", data, new_layout);
 }

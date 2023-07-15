@@ -1,4 +1,4 @@
 function plot_all(){
-    plot_accel_vel_time();
+    plot_sprint();
     plot_max_accel();
 }

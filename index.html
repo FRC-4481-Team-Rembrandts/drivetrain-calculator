@@ -21,8 +21,15 @@
   
     <div id="plot_window_accel" style="width:100%;max-width:1000px;"></div>
 
-    <div id="plot_window_t_vs_x" style="width:100%;max-width:700px"></div>
+    <p>Max velocity #1 [m/s]: <input type="number" value="4" id = "number_input_max_vel_1" onchange="plot_sprint()"> </p>
+    <p>Max acceleration #1 [m/s^2]: <input type="number" value="5.5" id = "number_input_max_accel_1" onchange="plot_sprint()"> </p>
     
+    <p>Max velocity #2 [m/s]: <input type="number" value="4.5" id = "number_input_max_vel_2" onchange="plot_sprint()"> </p>
+    <p>Max acceleration #2 [m/s^2]: <input type="number" value="5" id = "number_input_max_accel_2" onchange="plot_sprint()"> </p>
+
+
+    <div id="plot_window_sprint" style="width:100%;max-width:1000px"></div>
+
 
     <script src="js/constants.js"></script>
 
@@ -30,8 +37,8 @@
     <script src="js/max_acceleration_formulas.js"></script>
     <script src="js/max_accel_plot.js"></script>
 
-    <script src="js/accel_vel_formulas.js"></script>
-    <script src="js/accel_vel_time_plot.js"></script>
+    <script src="js/sprint_time_formulas.js"></script>
+    <script src="js/sprint_time_plot.js"></script>
 
   </body>
 </html>

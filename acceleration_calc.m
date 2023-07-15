@@ -11,7 +11,7 @@ b = l/2;
 h = 0.40; %Height of CG
 m = 55; %Mass of the robot
 r_t = 0.05; %Wheel radius
-T_stall = 1.4; %Emperical stall torque of NEO v1.1 @60 Amps
+T_stall = 0.5; %Emperical stall torque of NEO v1.1 @60 Amps
 gear_ratio = 5; %Gear ratio of REV MAX Swerve
 M_dmotor = T_stall * gear_ratio * 2; %Max moment of two wheels combined limited by motor stall torque
 
@@ -77,7 +77,7 @@ h_list = 0.05:0.01:1;
 ax_list = zeros(length(h_list),4);
 limit_list = zeros(length(h_list),4);
 F_z1_list = zeros(length(h_list),4);
-M_motor_list = T_stall * [0.5 0.75 1 1.25 1.5 2 2.5];
+M_motor_list = T_stall * [0 0.5 0.75 1 1.25 1.5 2 2.5];
 M_d_list = M_motor_list * gear_ratio * 2;
 
 hold on
