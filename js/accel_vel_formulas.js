@@ -2,7 +2,7 @@ function accel_vel_time_vs_x(max_vel, accel){
     const yValues = [];
     const xValues = [];
 
-    for (let x = 0; x < 10; x += 0.01){
+    for (let x = 0; x < 16.5; x += 0.01){
         let t = acceleration_velocity_time(max_vel, accel, x);
 
         xValues.push(x);

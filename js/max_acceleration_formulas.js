@@ -19,7 +19,7 @@ function formula_ax_vs_t_stall(mu, l, h, m, r_t, gear_ratio){
     const yValues = [];
     const xValues = [];
 
-    for (let x = 0.5; x <= 4; x += 0.01){
+    for (let x = 0.5; x <= 6; x += 0.01){
         let T_stall = x;
         a_x = formula_ax(mu, l, h, m, r_t, T_stall, gear_ratio);
 
