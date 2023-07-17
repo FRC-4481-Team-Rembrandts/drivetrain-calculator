@@ -6,7 +6,7 @@ function formula_ax_vs_h(mu, l, m, r_t, T_stall, gear_ratio){
     const xValues = [];
     const failModes = [];
 
-    for (let x = 0; x <= 1; x += 0.01){
+    for (let x = 0; x <= 1; x += 0.005){
         let h = x;
         let a_x;
         let failmode;
