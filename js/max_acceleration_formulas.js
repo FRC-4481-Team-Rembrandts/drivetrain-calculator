@@ -1,43 +1,55 @@
+
+
 function formula_ax_vs_h(mu, l, m, r_t, T_stall, gear_ratio){
     let M_dmotor = T_stall * gear_ratio * 2;  //Max moment of two wheels combined limited by motor stall torque
     const yValues = [];
     const xValues = [];
+    const failModes = [];
 
     for (let x = 0; x <= 1; x += 0.01){
         let h = x;
-        let a_x = formula_ax(mu,l,h,m,r_t,T_stall, gear_ratio);
+        let a_x;
+        let failmode;
+        [a_x, failmode] = formula_ax(mu,l,h,m,r_t,T_stall, gear_ratio);
 
         xValues.push(x);
-        yValues.push(a_x)
+        yValues.push(a_x);
+        failModes.push(failmode);
     }
 
-    return [xValues, yValues];
+    return [xValues, yValues, failModes];
     
 }
 
 function formula_ax_vs_t_stall(mu, l, h, m, r_t, gear_ratio){
     const yValues = [];
     const xValues = [];
+    const failModes = [];
 
     for (let x = 0; x <= 6; x += 0.01){
         let T_stall = x;
-        a_x = formula_ax(mu, l, h, m, r_t, T_stall, gear_ratio);
+        let a_x;
+        let failmode;
+        [a_x, failmode] = formula_ax(mu, l, h, m, r_t, T_stall, gear_ratio);
 
         xValues.push(x);
         yValues.push(a_x);
+        failModes.push(failmode);
     }
 
-    return [xValues, yValues];
+    return [xValues, yValues, failModes];
     
 }
 
 function formula_ax(mu, l, h, m, r_t, T_stall, gear_ratio){
+    let a_x;
+    let M_d1;
+    let M_d2; 
     let b = l/2;
     let a = l/2;
     let M_dmotor = T_stall * gear_ratio * 2;  //Max moment of two wheels combined limited by motor stall torque
-    let a_x;
-    let M_d1;
-    let M_d2;
+    let failmode = 0; //Keeps track of what is limiting the acceleration
+
     // Theoretical maximum acceleration, forces and moments
     a_x = mu * g;
 
@@ -52,6 +64,7 @@ function formula_ax(mu, l, h, m, r_t, T_stall, gear_ratio){
     //Maximum acceleration cannot result in negative vertical force on the
     //front wheel
     if (F_z1 < 0){
+        failmode = 1;
         //Acceleration when robot is at the limit of a wheelie
         F_z1 = 0;
         let F_z2 = m*g;
@@ -66,6 +79,7 @@ function formula_ax(mu, l, h, m, r_t, T_stall, gear_ratio){
 
     //Required motor torque cannot be higher than stall torque of the rear motor
     if (M_d2 > M_dmotor){
+        failmode = 2;
         //Assume F_x1 = mu*F_z1
         a_x = (M_dmotor*l + b*g*m*mu*r_t)/(m*r_t*(l + h*mu));
 
@@ -76,8 +90,9 @@ function formula_ax(mu, l, h, m, r_t, T_stall, gear_ratio){
 
     //Check if front wheel does not exceed torque limits
     if (M_d1 > M_dmotor){
+        failmode = 3;
         a_x = (2*M_dmotor)/(m*r_t);
     }
 
-    return a_x;
+    return [a_x, failmode];
 }

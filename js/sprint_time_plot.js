@@ -1,14 +1,19 @@
 const layoutSprint = {
     grid: {rows: 1, columns: 2, pattern: 'independent'},
     width: 1200,
-    xaxis: {range: [0, 16.5],
+    xaxis: {autorange: true,
             title: "Distance [m]"},
-    yaxis: {range: [0, 5],
+    yaxis: {autorange: true,
             title: "Time [s]"},
-    xaxis2: {range: [0, 7.5],
+    xaxis2: {autorange: true,
             title: "Time [s]"},
-    yaxis2: {range: [0, 16.5],
+    yaxis2: {autorange: true,
             title: "Distance [m], Velocity [m/s]"},
+    yaxis3: {autorange: true,
+            title: "Acceleration [m/s^2]",
+            anchor: 'x2',
+            overlaying: 'y2',
+            side: 'right'},
     //Annotations are used to display subplot title
     annotations: [{
         text: "Time against distance",
@@ -23,7 +28,7 @@ const layoutSprint = {
         yref: 'paper',
         },
         {
-            text: "Distance against time",
+            text: "Robot sprint against time",
             font: {
             size: 16,
         },
@@ -35,7 +40,12 @@ const layoutSprint = {
         yref: 'paper',
         }
         ],
-    showlegend: false,
+    showlegend: true,
+    legend: {
+      x: 1.22,
+      xanchor: 'right',
+      y: 1.1
+    }
     };
 
 function plot_sprint(){
@@ -52,7 +62,8 @@ function plot_sprint(){
     var trace1 = {
         x: x1,
         y: y1,
-        type: 'lines'
+        type: 'lines',
+        name: 'Sprint #1'
       };
 
       let x2;
@@ -64,7 +75,8 @@ function plot_sprint(){
         y: y2,
         xaxis: 'x1',
         yaxis: 'y1',
-        type: 'lines'
+        type: 'lines',
+        name: 'Sprint #2'
       };
 
       let x3;
@@ -76,7 +88,8 @@ function plot_sprint(){
         y: y3,
         xaxis: 'x2',
         yaxis: 'y2',
-        type: 'lines'
+        type: 'lines',
+        name: 'Distance #1'
       };
 
       let x4;
@@ -87,18 +100,31 @@ function plot_sprint(){
         y: y4,
         xaxis: 'x2',
         yaxis: 'y2',
-        type: 'lines'
+        type: 'lines',
+        name: 'Velocity #1'
       };
+
+      let x5;
+      let y5;
+      [x5, y5] = a_vs_sprint_time(max_vel_1, max_accel_1);
+      var trace5 = {
+        x: x5,
+        y: y5,
+        xaxis: 'x2',
+        yaxis: 'y3',
+        type: 'lines',
+        name: 'Acceleration #1'
+      }
 
 
       
-      var data = [trace1, trace2, trace3, trace4];
+      var data = [trace1, trace2, trace3, trace4, trace5];
       
       var layout = {
         grid: {rows: 1, columns: 2, pattern: 'independent'},
       };
       
-      Plotly.newPlot('plot_window_sprint', data, layoutSprint);
+      Plotly.react('plot_window_sprint', data, layoutSprint);
 
 
 }
