@@ -23,17 +23,31 @@
     
 
     <h1> A very nice page from the Team Rembrandts software department</h1>
+    <h2> 1. Calculate motor torque with current limit </h2>
+    <b>Method 1 </b>
+    <div style="width:400px;border-style:solid;border-color:grey;border-width:1px;margin-bottom:20px;">
+      <p>Motor stall torque [Nm]: <input type="number" value="4" id = "number_input_T_stall" onchange="plot_torque_method_1()"> </p>
+      <p>Motor stall current [A]: <input type="number" value="250" id = "number_input_I_stall" onchange="plot_torque_method_1()"> </p>  
+    </div>
+    <b>Method 2 </b>
+    <div style="width:400px;border-style:solid;border-color:grey;border-width:1px;">
+      <p>Motor torque constant [Nm/A]: <input type="number" value="" id = "number_input_K_T" onchange="plot_torque_method_2()"> </p>
+      <p>Winding resistance [Ohm]: <input type="number" value="" id = "number_input_R" onchange="plot_torque_method_2()"> </p> 
+    </div>
 
-    <p>Motor stall torque [Nm]: <input type="number" value="4" id = "number_input_T_stall" onchange="plot_motor_torque()"> </p>
-    <p>Motor stall current [A]: <input type="number" value="250" id = "number_input_I_stall" onchange="plot_motor_torque()"> </p>
-    <p>Current limit (on motor controller input current) [A]: <input type="number" value="50" id = "number_input_I_lim" onchange="plot_motor_torque()"> </p>
+    
+    <p>Current limit (on motor controller input current) [A]: <input type="number" value="25" id = "number_input_I_lim" onchange="update_torque_plot()"> </p>
     
     <div id="plot_window_torque" style="width:100%;max-width:1000px;"></div>
+
+    <div id="torque_outcome" class="result-box"></div>
   
 
 
     <hr>
 
+    <h2> 2. Calculate maximum acceleration </h2>
+  
     <p>Coefficient of friction [-]: <input type="number" value="0.8" id = "number_input_mu" onchange="plot_max_accel()"> </p>
     <p>Wheelbase length [m]: <input type="number" value="0.55" id = "number_input_l" onchange="plot_max_accel()"> </p>
     <p>Center of Gravity height [m]: <input type="number" value="0.4" id = "number_input_h" onchange="plot_max_accel()"> </p>
@@ -44,20 +58,24 @@
 
 
     <div style="width:100%;">
-      <span id="max_accel_legend_color1" style="border-style:solid;border-color:black;border-width:1px">  &nbsp; &nbsp; &nbsp; </span>
+      <span id="max_accel_legend_color1" class="accel_legend">  &nbsp; &nbsp; &nbsp; </span>
       <span id="max_accel_legend_text1"> &nbsp; </span>
-      <span id="max_accel_legend_color2" style="border-style:solid;border-color:black;border-width:1px">  &nbsp; &nbsp; &nbsp; </span>
+      <span id="max_accel_legend_color2" class="accel_legend">  &nbsp; &nbsp; &nbsp; </span>
       <span id="max_accel_legend_text2"> &nbsp; </span>
-      <span id="max_accel_legend_color3" style="border-style:solid;border-color:black;border-width:1px">  &nbsp; &nbsp; &nbsp; </span>
+      <span id="max_accel_legend_color3" class="accel_legend">  &nbsp; &nbsp; &nbsp; </span>
       <span id="max_accel_legend_text3"> &nbsp; </span>
-      <span id="max_accel_legend_color4" style="border-style:solid;border-color:black;border-width:1px">  &nbsp; &nbsp; &nbsp; </span>
+      <span id="max_accel_legend_color4" class="accel_legend">  &nbsp; &nbsp; &nbsp; </span>
       <span id="max_accel_legend_text4"> &nbsp; </span>
       
     </div>
   
     <div id="plot_window_accel" style="width:100%;max-width:1000px;"></div>
 
+    <div id="accel_outcome" class="result-box"></div>
+
     <hr>
+
+    <h2> 3. Calculate sprint characteristics</h2>
 
     <p>Max velocity #1 [m/s]: <input type="number" value="4" id = "number_input_max_vel_1" onchange="plot_sprint()"> </p>
     <p>Max acceleration #1 [m/s^2]: <input type="number" value="5.5" id = "number_input_max_accel_1" onchange="plot_sprint()"> </p>

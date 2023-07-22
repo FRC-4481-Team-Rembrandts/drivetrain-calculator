@@ -2,3 +2,20 @@ body{
     margin-left: 15%;
     margin-right: 15%;
 }
+
+.result-box{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    width:fit-content
+    ;border-style:solid;
+    border-color:red;
+    border-width:1px;
+}
+
+.accel_legend{
+    border-style:solid;
+    border-color:black;
+    border-width:1px
+}

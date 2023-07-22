@@ -81,6 +81,11 @@ function plot_max_accel(){
     new_layout = draw_rect(new_layout, failModesT, xValuesTStall, 'x2');
 
     Plotly.react("plot_window_accel", data, new_layout);
+
+    let outcome_div = document.getElementById("accel_outcome");
+    let accel = formula_ax(mu, l, h, m, r_t, T_stall, gear_ratio)[0];
+    let accel_text = "Maximum acceleration: " + accel.toFixed(2).toString() + " m/s^2";
+    outcome_div.innerHTML = accel_text;
 }
 
 function draw_vert_line(old_layout, h, T_stall){

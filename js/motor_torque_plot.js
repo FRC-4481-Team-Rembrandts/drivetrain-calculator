@@ -13,10 +13,48 @@ const layoutTorque = {
     }
     };
 
-function plot_motor_torque(){
-    let T_stall = parseFloat(document.getElementById('number_input_T_stall').value);
-    let I_stall = parseFloat(document.getElementById('number_input_I_stall').value);
-    let I_lim = parseFloat(document.getElementById('number_input_I_lim').value);
+//Declare input variables
+let T_stall;
+let I_stall;
+let I_lim;
+let K_T;
+let R;
+
+function update_input_torque(){
+    T_stall = parseFloat(document.getElementById('number_input_T_stall').value);
+    I_stall = parseFloat(document.getElementById('number_input_I_stall').value);
+    I_lim = parseFloat(document.getElementById('number_input_I_lim').value);
+    K_T = parseFloat(document.getElementById('number_input_K_T').value);
+    R = parseFloat(document.getElementById('number_input_R').value);
+}
+
+function plot_torque_method_1(){   
+    update_input_torque();
+
+    let k_t_input = document.getElementById('number_input_K_T');
+    k_t_input.value = (T_stall / I_stall).toFixed(4);
+
+    let R_input = document.getElementById('number_input_R');
+    R_input.value = (12 / I_stall).toFixed(4);
+
+    update_torque_plot();
+}
+
+function plot_torque_method_2(){   
+    update_input_torque();
+
+    let T_stall_input = document.getElementById('number_input_T_stall');
+    T_stall_input.value = ((K_T * 12) / R).toFixed(3);
+
+    let I_stall_input = document.getElementById('number_input_I_stall');
+    I_stall_input.value = (12 / R).toFixed(0);
+
+    update_torque_plot();
+}
+
+function update_torque_plot(){
+
+    update_input_torque();
 
     let xValuesIn;
     let yValuesIn;
@@ -42,6 +80,10 @@ function plot_motor_torque(){
     let new_layout_torque = draw_vert_line_torque(layoutTorque, I_lim);    
     Plotly.react('plot_window_torque', data, new_layout_torque);
 
+    let outcome_div = document.getElementById("torque_outcome");
+    let torque = torque_current_in(T_stall, I_stall, I_lim);
+    let torque_text = "Current limited stall torque: " + torque.toFixed(2).toString() + " Nm";
+    outcome_div.innerHTML = torque_text;
 
 }
 
