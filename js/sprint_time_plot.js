@@ -69,7 +69,6 @@ function plot_sprint(){
       let x2;
       let y2;
       [x2,y2] = sprint_time_vs_x(max_vel_2,max_accel_2);
-      
       var trace2 = {
         x: x2,
         y: y2,
@@ -82,7 +81,6 @@ function plot_sprint(){
       let x3;
       let y3;
       [y3,x3] = sprint_time_vs_x(max_vel_1,max_accel_1);
-      
       var trace3 = {
         x: x3,
         y: y3,
@@ -116,13 +114,8 @@ function plot_sprint(){
         name: 'Acceleration #1'
       }
 
-
       
       var data = [trace1, trace2, trace3, trace4, trace5];
-      
-      var layout = {
-        grid: {rows: 1, columns: 2, pattern: 'independent'},
-      };
       
       Plotly.react('plot_window_sprint', data, layoutSprint);
 

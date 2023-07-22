@@ -46,7 +46,7 @@ function plot_max_accel(){
     let h = parseFloat(document.getElementById('number_input_h').value);
     let m = parseFloat(document.getElementById('number_input_m').value);
     let r_t = parseFloat(document.getElementById('number_input_r_t').value);
-    let T_stall = parseFloat(document.getElementById('number_input_T_stall').value);
+    let T_stall = parseFloat(document.getElementById('number_input_T_stall_limited').value);
     let gear_ratio = parseFloat(document.getElementById('number_input_gear_ratio').value);
 
     var xValuesH;

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"> </script>
   </head>
-  <body onLoad="plot_all()">
+  <body onLoad="plot_all()" >
     <script src="js/constants.js"></script>
 
     <script src="js/main_plot.js"></script>
@@ -16,16 +16,30 @@
 
     <script src="js/sprint_time_formulas.js"></script>
     <script src="js/sprint_time_plot.js"></script>
+
+    <script src="js/motor_torque_formulas.js"></script>
+    <script src="js/motor_torque_plot.js"></script>
+    
     
 
     <h1> A very nice page from the Team Rembrandts software department</h1>
+
+    <p>Motor stall torque [Nm]: <input type="number" value="4" id = "number_input_T_stall" onchange="plot_motor_torque()"> </p>
+    <p>Motor stall current [A]: <input type="number" value="250" id = "number_input_I_stall" onchange="plot_motor_torque()"> </p>
+    <p>Current limit (on motor controller input current) [A]: <input type="number" value="50" id = "number_input_I_lim" onchange="plot_motor_torque()"> </p>
+    
+    <div id="plot_window_torque" style="width:100%;max-width:1000px;"></div>
+  
+
+
+    <hr>
 
     <p>Coefficient of friction [-]: <input type="number" value="0.8" id = "number_input_mu" onchange="plot_max_accel()"> </p>
     <p>Wheelbase length [m]: <input type="number" value="0.55" id = "number_input_l" onchange="plot_max_accel()"> </p>
     <p>Center of Gravity height [m]: <input type="number" value="0.4" id = "number_input_h" onchange="plot_max_accel()"> </p>
     <p>Robot mass [kg]: <input type="number" value="55" id = "number_input_m" onchange="plot_max_accel()"> </p>
     <p>Wheel radius [m]: <input type="number" value="0.05" id = "number_input_r_t" onchange="plot_max_accel()"> </p>
-    <p>Motor stall torque [Nm]: <input type="number" value="1.4" id = "number_input_T_stall" onchange="plot_max_accel()"> </p>
+    <p>Motor stall torque (current limited) [Nm]: <input type="number" value="1.4" id = "number_input_T_stall_limited" onchange="plot_max_accel()"> </p>
     <p>Gear ratio [-]: <input type="number" value="5" id = "number_input_gear_ratio" onchange="plot_max_accel()"> </p>
 
 
@@ -53,6 +67,5 @@
 
 
     <div id="plot_window_sprint" style="width:100%;max-width:1000px"></div>
-
   </body>
 </html>
