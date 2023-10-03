@@ -20,6 +20,7 @@ let I_lim;
 let K_T;
 let R;
 
+// Import values from HTML
 function update_input_torque(){
     T_stall = parseFloat(document.getElementById('number_input_T_stall').value);
     I_stall = parseFloat(document.getElementById('number_input_I_stall').value);
@@ -28,6 +29,7 @@ function update_input_torque(){
     R = parseFloat(document.getElementById('number_input_R').value);
 }
 
+// Compute method 1
 function plot_torque_method_1(){   
     update_input_torque();
 
@@ -40,6 +42,7 @@ function plot_torque_method_1(){
     update_torque_plot();
 }
 
+// Compute method 2
 function plot_torque_method_2(){   
     update_input_torque();
 
@@ -52,10 +55,12 @@ function plot_torque_method_2(){
     update_torque_plot();
 }
 
+// Update plot
 function update_torque_plot(){
 
     update_input_torque();
 
+    // Generate trace1
     let xValuesIn;
     let yValuesIn;
     [xValuesIn, yValuesIn] = torque_vs_I_in(T_stall, I_stall);
@@ -66,6 +71,7 @@ function update_torque_plot(){
         name: 'Input current'
     };
 
+    // Generate trace2
     let xValuesWinding;
     let yValuesWinding;
     [xValuesWinding, yValuesWinding] = torque_vs_I_winding(T_stall, I_stall);
@@ -76,10 +82,12 @@ function update_torque_plot(){
         name: 'Winding current'
     }
 
+    // Show traces
     var data = [trace1, trace2];
     let new_layout_torque = draw_vert_line_torque(layoutTorque, I_lim);    
     Plotly.react('plot_window_torque', data, new_layout_torque);
 
+    // Compute + Show outcome
     let outcome_div = document.getElementById("torque_outcome");
     let torque = torque_current_in(T_stall, I_stall, I_lim);
     let torque_text = "Current limited stall torque: " + torque.toFixed(2).toString() + " Nm";
@@ -87,6 +95,7 @@ function update_torque_plot(){
 
 }
 
+// Add vertical line
 function draw_vert_line_torque(old_layout, I_lim){
     var new_layout = {
         ...old_layout,
