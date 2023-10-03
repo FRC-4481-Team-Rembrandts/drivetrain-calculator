@@ -19,6 +19,8 @@
 
     <script src="js/motor_torque_formulas.js"></script>
     <script src="js/motor_torque_plot.js"></script>
+
+    <script src="js/motor_sim_plot.js"></script>
     
     
     <!-- Main header -->
@@ -84,5 +86,39 @@
 
     <!-- Outputs -->
     <div id="plot_window_sprint" style="width:100%;max-width:1000px"></div>
+
+
+    <!-- Section Four -->
+    <hr>
+    <h2> 4. Simulate sprint distance</h2>
+
+    <!-- Inputs -->
+    <b>Motor constant(s)</b>
+    <p>Motor stall torque [Nm]: <input type="number" value="4" id = "number_input_T_stall_sim" onchange=""> </p>
+    <p>Motor stall current [A]: <input type="number" value="250" id = "number_input_I_stall_sim" onchange=""> </p>  
+    <p>Max velocity [m/s]: <input type="number" value="4" id = "number_input_v_max_sim" onchange=""> </p>
+    
+    <b>Drivetrain constant(s)</b>
+    <p>Coefficient of friction [-]: <input type="number" value="0.8" id = "number_input_mu_sim" onchange=""> </p>
+    <p>Wheelbase length [m]: <input type="number" value="0.55" id = "number_input_l_sim" onchange=""> </p>
+    <p>Center of Gravity height [m]: <input type="number" value="0.4" id = "number_input_h_sim" onchange=""> </p>
+    <p>Robot mass [kg]: <input type="number" value="55" id = "number_input_m_sim" onchange=""> </p>
+    <p>Wheel radius [m]: <input type="number" value="0.05" id = "number_input_r_t_sim" onchange=""> </p>
+    <p>Gear ratio [-]: <input type="number" value="5" id = "number_input_gear_ratio_sim" onchange=""> </p>
+
+    <b>Software constant(s)</b>
+    <p>Current limit (on motor controller input current) [A]: <input type="number" value="50" id = "number_input_I_lim_sim" onchange=""> </p>
+    
+    <b>Simulation constant(s)</b>
+    <p>timestep size [s] <input type="number" value="0.001" id = "number_input_dt_sim" onchange=""> </p>
+    <p>max time [s] <input type="number" value="4" id = "number_input_t_max_sim" onchange=""> </p>
+
+    <!-- Buttons -->
+    <button onclick="plot_sim()">Calculate</button>
+
+    <!-- Outputs -->
+    <div id="plot_window_sim" style="width:100%;max-width:1000px"></div>
+
+
   </body>
 </html>
