@@ -8,8 +8,8 @@ body{
     padding-bottom: 5px;
     padding-left: 12px;
     padding-right: 12px;
-    width:fit-content
-    ;border-style:solid;
+    width:fit-content;
+    border-style:solid;
     border-color:red;
     border-width:1px;
 }
@@ -17,5 +17,11 @@ body{
 .accel_legend{
     border-style:solid;
     border-color:black;
-    border-width:1px
+    border-width:1px;
+}
+
+table, th, td {
+    text-align: center;
+    border: 1px solid black;
+    border-collapse: collapse;
 }

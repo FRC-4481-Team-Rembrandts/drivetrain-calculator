@@ -112,13 +112,63 @@
     <b>Simulation constant(s)</b>
     <p>timestep size [s] <input type="number" value="0.001" id = "number_input_dt_sim" onchange=""> </p>
     <p>max time [s] <input type="number" value="4" id = "number_input_t_max_sim" onchange=""> </p>
+    <p>Position time [s] <input type="number" value="2" id = "number_input_t_pos_sim" onchange=""> </p>
 
+    <table>
+      <tr>
+        <th colspan="4"><a href="https://motors.vex.com/">Vex test data</a></th>
+      </tr>
+      <tr>
+        <th></th>
+        <th>Falcon 500</th>
+        <th>Neo</th>
+        <th>Neo 550</th>
+      </tr>
+      <tr>
+        <td>Free Speed (RPM)</td>
+        <td>6380</td>
+        <td>5820</td>
+        <td>11710</td>
+      </tr>
+      <tr>
+        <td>Free Current (A)</td>
+        <td>1.5</td>
+        <td>1.7</td>
+        <td>1.1</td>
+      </tr>
+      <tr>
+        <td>Maximum Power (W)</td>
+        <td>783</td>
+        <td>500</td>
+        <td>332</td>
+      </tr>
+      <tr>
+        <td>Stall Torque (Nm)</td>
+        <td>4.69</td>
+        <td>3.28</td>
+        <td>1.08</td>
+      </tr>
+      <tr>
+        <td>Stall Current (A)</td>
+        <td>257</td>
+        <td>181</td>
+        <td>111</td>
+      </tr>
+      <tr>
+        <td>Take over values</td>
+        <td><button onclick="take_over('falcon')">Falcon</button></td>
+        <td><button onclick="take_over('neo')">Neo</button></td>
+        <td><button onclick="take_over('neo550')">Neo 550</button></td>
+      </tr>
+    </table>
+
+    <br>
     <!-- Buttons -->
     <button onclick="plot_sim()">Calculate</button>
 
     <!-- Outputs -->
     <div id="plot_window_sim" style="width:100%;max-width:1000px"></div>
-
+    <div id="position_outcome" class="result-box"></div>
 
   </body>
 </html>
