@@ -25,3 +25,9 @@ table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
 }
+
+.equation {
+    font-weight: bold;
+    font-size: 1em;
+    text-align: center;
+}

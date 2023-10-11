@@ -6,6 +6,11 @@
     <link rel="icon" href="images/TR Monogram - Orange.png">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"> </script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
   </head>
   <body onLoad="plot_all()" >
     <script src="js/constants.js"></script>
@@ -28,6 +33,23 @@
 
     <!-- First section -->
     <h2> 1. Calculate motor torque with current limit </h2>
+
+    <!-- Equations -->
+
+    <div class="equation">
+      Ohms law: \(U=IR\)
+      <br>
+      Torque equations 
+      <br>
+      \(\tau = \sqrt{I_{controller}/I_{stall}} \cdot \tau_{stall}\)
+      <br>
+      \(\tau = \tau_{stall} / I_{stall} \cdot I_{winding}\)
+      <br>
+      \(\tau = K_T \cdot R_{winding} / U_{winding}\)
+      <br>
+      Torque: \(\tau\), Current: \(I\), Voltage: \(U\), Resistance: \(R\), Motor torque constant: \(K_T\)
+
+    </div>
 
     <!-- Inputs -->
     <b>Method 1 </b>
