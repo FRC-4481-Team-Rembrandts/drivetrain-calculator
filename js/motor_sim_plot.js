@@ -20,14 +20,17 @@ const MOTOR_DATA = {
     'falcon' : {
         T_stall: 4.69,
         I_stall: 257,
+        V_free: 6380
     },
     'neo' : {
         T_stall: 3.28,
         I_stall: 181,
+        V_free: 5820
     },
     'neo550' : {
         T_stall: 1.08,
         I_stall: 111,
+        V_free: 11710
     },
 }
 
@@ -35,13 +38,15 @@ const MOTOR_DATA = {
 function take_over(type){
     document.getElementById('number_input_T_stall_sim').value = MOTOR_DATA[type].T_stall;
     document.getElementById('number_input_I_stall_sim').value = MOTOR_DATA[type].I_stall;
+    document.getElementById('number_input_V_free_sim').value = MOTOR_DATA[type].V_free;
 }
 
 // Import values from HTML
 function update_input_sim(){
     sim.T_stall = parseFloat(document.getElementById('number_input_T_stall_sim').value);
     sim.I_stall = parseFloat(document.getElementById('number_input_I_stall_sim').value);
-    sim.v_max = parseFloat(document.getElementById('number_input_v_max_sim').value);
+    sim.V_free = parseFloat(document.getElementById('number_input_V_free_sim').value);
+    // sim.v_max = parseFloat(document.getElementById('number_input_v_max_sim').value);
 
     sim.mu = parseFloat(document.getElementById('number_input_mu_sim').value);
     sim.l = parseFloat(document.getElementById('number_input_l_sim').value);
@@ -49,6 +54,7 @@ function update_input_sim(){
     sim.m = parseFloat(document.getElementById('number_input_m_sim').value);
     sim.r_t = parseFloat(document.getElementById('number_input_r_t_sim').value);
     sim.gear_ratio = parseFloat(document.getElementById('number_input_gear_ratio_sim').value);
+    sim.eff = parseFloat(document.getElementById('number_input_efficiency_sim').value);
 
     sim.I_lim = parseFloat(document.getElementById('number_input_I_lim_sim').value);
     
@@ -85,8 +91,10 @@ function compute_sim(sim){
     let T = 0;
     let t = 0;
 
+    output.v_max = sim.V_free / 60 / sim.gear_ratio * 2 * Math.PI * sim.r_t;
+
     T_stall_lim = torque_current_in(sim.T_stall, sim.I_stall, sim.I_lim);
-    v_no_lim = sim.v_max * (1 - T_stall_lim / sim.T_stall);
+    v_no_lim = output.v_max * (1 - T_stall_lim / sim.T_stall);
 
     
     // simulation loop
@@ -95,7 +103,7 @@ function compute_sim(sim){
         if (v < v_no_lim) {
             T = T_stall_lim;
         } else {
-            T = sim.T_stall*(1- v/sim.v_max);
+            T = sim.T_stall*(1- v/output.v_max);
         }
 
         a = formula_ax(sim.mu, sim.l, sim.h, sim.m, sim.r_t, T, sim.gear_ratio)[0];
@@ -152,5 +160,6 @@ function plot_sim(){
 
     Plotly.react('plot_window_sim', data, draw_vert_line_torque(layoutSim, sim.t_pos));
 
-    document.getElementById("position_outcome").innerHTML = "Distance at t = " + sim.t_pos + " is " + output.x_arr[Math.round(sim.t_pos/sim.dt)].toFixed(2) + " meters"
+    document.getElementById("max_speed").innerHTML = "Theoretical calculated max speed is " + output.v_max.toFixed(2) + " m/s ";
+    document.getElementById("position_outcome").innerHTML = "Distance at t = " + sim.t_pos + " is " + output.x_arr[Math.round(sim.t_pos/sim.dt)].toFixed(2) + " meters";
 }

@@ -118,7 +118,8 @@
     <b>Motor constant(s)</b>
     <p>Motor stall torque [Nm]: <input type="number" value="4" id = "number_input_T_stall_sim" onchange=""> </p>
     <p>Motor stall current [A]: <input type="number" value="250" id = "number_input_I_stall_sim" onchange=""> </p>  
-    <p>Max velocity [m/s]: <input type="number" value="4" id = "number_input_v_max_sim" onchange=""> </p>
+    <p>Free speed [RPM]: <input type="number" value="5000" id = "number_input_V_free_sim" onchange=""> </p>
+    <!-- <p>Max velocity [m/s]: <input type="number" value="4" id = "number_input_v_max_sim" onchange=""> </p> -->
     
     <b>Drivetrain constant(s)</b>
     <p>Coefficient of friction [-]: <input type="number" value="0.8" id = "number_input_mu_sim" onchange=""> </p>
@@ -127,6 +128,7 @@
     <p>Robot mass [kg]: <input type="number" value="55" id = "number_input_m_sim" onchange=""> </p>
     <p>Wheel radius [m]: <input type="number" value="0.05" id = "number_input_r_t_sim" onchange=""> </p>
     <p>Gear ratio [-]: <input type="number" value="5" id = "number_input_gear_ratio_sim" onchange=""> </p>
+    <p>Efficiency [-]: <input type="number" value="0.8" id = "number_input_efficiency_sim" onchange=""> </p>
 
     <b>Software constant(s)</b>
     <p>Current limit (on motor controller input current) [A]: <input type="number" value="50" id = "number_input_I_lim_sim" onchange=""> </p>
@@ -190,6 +192,7 @@
 
     <!-- Outputs -->
     <div id="plot_window_sim" style="width:100%;max-width:1000px"></div>
+    <div id="max_speed" class="result-box"></div>
     <div id="position_outcome" class="result-box"></div>
 
   </body>
