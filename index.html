@@ -26,6 +26,7 @@
     <script src="js/motor_torque_plot.js"></script>
 
     <script src="js/motor_sim_plot.js"></script>
+    <script src="js/motor_sim2_plot.js"></script>
     
     
     <!-- Main header -->
@@ -194,6 +195,40 @@
     <div id="plot_window_sim" style="width:100%;max-width:1000px"></div>
     <div id="max_speed" class="result-box"></div>
     <div id="position_outcome" class="result-box"></div>
+
+    <!-- Section Five -->
+    <hr>
+    <h2> 4. Simulate motor torque</h2>
+
+    <!-- Inputs -->
+    <b>Motor constant(s)</b>
+    <p>Motor constant Kv [RPM/Volt]: <input type="number" value="500" id = "number_input_kv_sim2" onchange=""> (peak voltage / no load rpm or stall current / stall torque * 8.3) </p>
+    <p>Motor winding resistance [Ohm]: <input type="number" value="0.048" id = "number_input_R_winding_sim2" onchange=""> (12 volts / stall current) </p>  
+    
+    <b>Mechanism constant(s)</b>
+    <p>[WIP] Friction Kf [Nm/RPM]: <input type="number" value="0" id = "number_mu_input_sim2" onchange=""> </p>
+    <p>[WIP] Gear ratio [-]: <input type="number" value="1" id = "number_input_gear_ratio_sim2" onchange=""> </p>
+    <p>[WIP] Efficiency [-]: <input type="number" value="1" id = "number_input_efficiency_sim2" onchange=""> </p>
+    <p>Mechanism inertia [kg m^2]: <input type="number" value="0.01" id = "number_input_Inertia_sim2" onchange=""> </p>
+
+    <b>Software constant(s)</b>
+    <p>Motor winding current limit [A]: <input type="number" value="80" id = "number_input_I_lim_sim2" onchange=""> </p>
+    <p>[Not used] Applied motor voltage [V]: <input type="number" value="12" id = "number_input_V_applied_sim2" onchange=""> </p>
+    <p>Looper dt [s]: <input type="number" value="0.02" id = "number_looper_dt_sim2" onchange=""> </p>
+    
+    <b>Simulation constant(s)</b>
+    <p>timestep size [s] <input type="number" value="0.0001" id = "number_dt_input_sim2" onchange=""> don't go lower than 0.00001 </p>
+    <p>max time [s] <input type="number" value="8" id = "number_t_max_sim2" onchange=""> </p>
+    <p>Target angular velocity [RPM] <input type="number" value="2000" id = "number_w_target_sim2" onchange=""> </p>
+
+    <br>
+    <!-- Buttons -->
+    <button onclick="plot_sim2()">Calculate</button>
+
+    <!-- Outputs -->
+    <div id="plot_window_sim2" style="width:100%;max-width:1000px"></div>
+    <div id="time_to_target_w" class="result-box"></div>
+    <div id="w_err_mean" class="result-box"></div>
 
   </body>
 </html>
