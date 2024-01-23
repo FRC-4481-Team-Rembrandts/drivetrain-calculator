@@ -18,20 +18,25 @@ var sim = {};
 
 const MOTOR_DATA = {
     'falcon' : {
-        T_stall: 4.69,
-        I_stall: 257,
-        V_free: 6380
+        T_stall: 5.34,
+        I_stall: 297.45,
+        V_free: 6500
     },
     'neo' : {
-        T_stall: 3.28,
-        I_stall: 181,
+        T_stall: 4.20,
+        I_stall: 216.27,
         V_free: 5820
     },
-    'neo550' : {
-        T_stall: 1.08,
-        I_stall: 111,
-        V_free: 11710
+    'kraken' : {
+        T_stall: 7.16,
+        I_stall: 374.38,
+        V_free: 6050
     },
+    'vortex' : {
+        T_stall: 5.96,
+        I_stall: 391.09,
+        V_free: 6780
+    }
 }
 
 // Take over table values
@@ -93,7 +98,7 @@ function compute_sim(sim){
 
     output.v_max = sim.V_free / 60 / sim.gear_ratio * 2 * Math.PI * sim.r_t;
 
-    T_stall_lim = torque_current_in(sim.T_stall, sim.I_stall, sim.I_lim);
+    T_stall_lim = torque_current_winding(sim.T_stall, sim.I_stall, sim.I_lim);
     v_no_lim = output.v_max * (1 - T_stall_lim / sim.T_stall);
 
     
