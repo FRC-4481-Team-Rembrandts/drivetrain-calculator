@@ -6,4 +6,5 @@ function plot_all(){
     create_color_legend();
     plot_sprint();
     plot_sim();
+    plot_sim2();
 }
