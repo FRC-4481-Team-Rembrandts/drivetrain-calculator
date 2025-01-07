@@ -1,3 +1,3 @@
 # Drivetrain Calculator
 
-![recalc at home](https://imgflip.com/i/9fxrmv)
+![recalc at home](https://i.imgflip.com/9fxrmv.jpg)
