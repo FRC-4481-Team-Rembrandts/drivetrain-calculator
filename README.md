@@ -1,1 +1,3 @@
-# FRC-4481-Team-Rembrandts.github.io
+# Drivetrain Calculator
+
+![recalc at home](https://imgflip.com/i/9fxrmv)
